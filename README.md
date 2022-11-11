@@ -1,8 +1,7 @@
 ## bdives-main
 
+~/~ Repo storing source code and projects made by only myself unless decided otherwise in the future. 
+ 
+$> I believe in taking care of myself and a balanced diet and rigorous excercie routine. 
 
-Repository for projects owned by bdives (me) and not for the use of anyone else i'd hope. I also hope this works correctly which is unprobable
-
-$> There will be multiple project folders that i will use for IF or when i eventually make something useful using python
-
-$> Each project folder will contain subdirectories with required documents (eg. PDF's for PDF Mining) and other things necessary
+$> In the morning if my face is a little puffy, i'll put on an ice pack while doing stomach crunches... I can do a thousand now.
