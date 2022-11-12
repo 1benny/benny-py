@@ -30,7 +30,7 @@ image1 = tk.PhotoImage(file="C:\\Users\\Ben\\tayk.png")
 frame1 = tk.Frame(root, height=340, width=225, bg="#D3D3D3")
 frame1.place(relx=0.01, rely=0.06)
 
-frame2 = tk.Frame(root, height=340, width=225, bg="#DFDFDF", PhotoImage=image1)
+frame2 = tk.Frame(root, height=340, width=225, bg="#DFDFDF")
 frame2.place(relx=0.56, rely=0.06)
 
 

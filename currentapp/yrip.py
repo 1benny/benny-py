@@ -16,15 +16,18 @@ def search():
     print(s.results)
     
     for v in s.results:
-        s_results = f"~ {v.title}\n"
-    
-    search_results.configure(text=s_results)    
+        if var3.get() == 1:
+            s_results = f"~ {v.title}\n {v.watch_url}\n"
+            s_results_text.insert(1.0, str(s_results))       
+        elif var3.get() == 0:
+            s_results = f"~ {v.title}\n"
+            s_results_text.insert(1.0, str(s_results))
 
-   
     return
 
 
 def download_vid():
+    global vid_dl
     dl_label.after(5000) 
     url = entry1.get()
     vid_dl = YouTube(url)
@@ -32,20 +35,15 @@ def download_vid():
     vid_title = vid_dl.title
     format_path = os.path.join(set_path, vid_title).replace("\\", "/")
     ext_path = (str(format_path) + r".mp4")
-    do_download.download(set_path)
+    #do_download.download(set_path)
+
+    try: 
+        do_download.download(set_path)
+    except NameError: dl_label.configure(text="Error: No directory selected")
+    else:
+        do_download.download(set_path)
+        
     
-#    try:
-#        YouTube(do_download)
-#    except exceptions.VideoPrivate:
-#        dl_label.configure(text="ERROR: Video private")
-#    except exceptions.VideoRegionBlocked:
-#        dl_label.configure(text="ERROR: Video is blocked in your region")
-#    except exceptions.VideoUnavailable:
-#        dl_label.configure(text="Video unavailable")
-#    else:
-#        do_download.download()
-
-
     if os.path.exists(ext_path):
         dl_label.configure(text="Success")
     else:
@@ -53,9 +51,20 @@ def download_vid():
 
     if var2.get() == 1:
         open_finish()
+    elif var1.get() == 1:
+        mp3()
     else:
-        pass
+        pass        
     return 
+
+
+def mp3():
+    audio_only = vid_dl.streams.filter(only_audio=True).first()
+    audio_out = audio_only.download(output_path=set_path)
+    base, ext = os.path.splitext(audio_out)
+    new_file = base + '.mp3'
+    os.rename(audio_out, new_file)
+    return
 
 
 def open_finish():
@@ -90,7 +99,7 @@ root = tk.Tk()
 root.geometry("480x260")
 root.resizable(False, False)
 root.title("YRip")
-#root.iconbitmap(r"C:\bitmap.ico")
+root.iconbitmap(r"C:\YRip\bitmap.ico")
 
 canvas1 = tk.Canvas(root, bg="#D3D3D3")
 canvas1.place(relwidth=2, relheight=1.5, relx=0, rely=0.1)
@@ -101,9 +110,9 @@ label1.place(x=0, y=2)
 button3 = tk.Button(canvas1, text="Exit", command=kill, font=("Consolas", 8), height=0, width=16)
 button3.place(x=4.5, y=210)
 
-#image1 = ImageTk.PhotoImage(Image.open("C:\\YRip.png"))
+#image1 = ImageTk.PhotoImage(Image.open(r"C:\YRip\colour1.png"))
 #img_lbl = tk.Label(canvas1, image=image1)
-#img_lbl.place(x=362, y=180)
+#img_lbl.place(x=200, y=180)
 
 
  # # // Direct download func // # / # / # / # / # / # / # / # / # / # / # / # / # / # / # / # / # / # / # / # / # / # # / # / # / # / # / # / # / # / # / # / 
@@ -130,8 +139,8 @@ button2.place(x=4.5, y=71)
 var1 = tk.IntVar()
 var2 = tk.IntVar()
 
-new_box = tk.Checkbutton(canvas1, text="Do Nothing",variable=var1, onvalue=1, offvalue=0, bg="#D3D3D3")
-new_box.place(x=118, y=45.4)
+mp3_box = tk.Checkbutton(canvas1, text="Download as mp3",variable=var1, onvalue=1, offvalue=0, bg="#D3D3D3")
+mp3_box.place(x=118, y=45.4)
 
 open_box = tk.Checkbutton(canvas1, text="Open on finish",variable=var2, onvalue=1, offvalue=0, bg="#D3D3D3")
 open_box.place(x=118, y=68.6)
@@ -146,14 +155,22 @@ canvas2.place(relwidth=0.45, relheight=0.4,x=260, y=103)
 search_results = tk.Label(root, font=("Consolas", 7), bg="#C3C3C3", wraplength=200, justify="left")
 search_results.place(x=263 , y=110)
 
+s_results_text = tk.Text(root, font=("Consolas", 8), bg="#C3C3C3", width=35, height=11)
+s_results_text.place(x=262, y=105)
+
 s_label = tk.Label(canvas1, text="Search:", font=("Consolas", 9), bg="#D3D3D3")
 s_label.place(x=257, y=5)
 
 entry2 = tk.Entry(canvas1, width=30, font=("Consolas", 10))
 entry2.place(x=261, y=23)
 
-s_button = tk.Button(canvas1, text="Search", font=("Consolas", 8), width=34, command=search)
+s_button = tk.Button(canvas1, text="Search", font=("Consolas", 8), width=17, command=search)
 s_button.place(x=262, y=46)
+
+var3 = tk.IntVar()
+
+s_checkbox = tk.Checkbutton(canvas1, text="Include URL", variable=var3, onvalue=1, offvalue=0, font=("Consolas", 8), bg="#D3D3D3")
+s_checkbox.place(x=380, y=46)
 
 
 # / # / # / # / # / # / # / # / # / # / # / # / # / # / # / # / # / # / # / # / # / # / # / # / # / # / # / # / # /
