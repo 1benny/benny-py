@@ -104,7 +104,7 @@ root.iconbitmap(r"C:\YRip\bitmap.ico")
 canvas1 = tk.Canvas(root, bg="#D3D3D3")
 canvas1.place(relwidth=2, relheight=1.5, relx=0, rely=0.1)
 
-label1 = tk.Label(root, text="YRip ~ v0.0.1", font=("Consolas", 10 ))
+label1 = tk.Label(root, text="YRip ~ v0.0.2", font=("Consolas", 10))
 label1.place(x=0, y=2)
 
 button3 = tk.Button(canvas1, text="Exit", command=kill, font=("Consolas", 8), height=0, width=16)
