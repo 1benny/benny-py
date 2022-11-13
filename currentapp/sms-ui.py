@@ -3,29 +3,59 @@ import requests
 from time import sleep
 import os
 
+global keyfile
+
+def manual_key():
+    nkeywin = tk.Tk()
+    nkeywin.title("Manually import API Key")
+    nkeywin.geometry("200x80")
+    return
+
+
 def send():
     url = 'https://textbelt.com/text'
     req = requests.post(url,    {
-        "phone": entry1.get(),
+        "phone": phone_entry.get(),
         "message": text1.get(1.0, "end"),
-        "key": entry2.get()
+        "key": key_entry.get()
         })
     result = req.json()
     text1.insert(1.0, result)
+
+    if var1.get() == 1:
+        save_def()
   
     return
 
 def check():
-    qkey = entry2.get()
+    qkey = key_entry.get()
     quota = requests.post(f'https://textbelt.com/quota/{qkey}')
     text1.delete(1.0, "end")
-    text1.insert(1.0, quota.json())
-
+    text1.insert("end", quota.json())
     return
+
+
+
+## Once written to a local file needs to be able to use that local file to read from
+## in order to use a "default" key. 
+## ~~> Somewhere in code needs to be pointing at the text/list file: eg. the open() or 
+## something like x = r"C:\Users\Ben\Desktop\shit\Python\bdives-main\currentapp"
+
+def save_def():       
+    global keyfile
+    key_data = key_entry.get()
+    with open("new_keyg.list", 'w') as file:
+        var = file.write(str(key_data))
+        print(var)
+        file.close()
+        keyfile = file
+        pass
+    return
+
+
 
 def show():
     return
-
 
 # # // Main widget // # / # / # / # / # / # / # / # / # / # / # / # / # / # / # / # / # / # / # / # / # / # / # / # / # / # / # / # / # / # / # / # / # / # /
 
@@ -40,20 +70,22 @@ canvas1.place(relwidth=2, relheight=1.5, relx=0, rely=0.1)
 label1 = tk.Label(root, text="~~ SMSvP", font=("Consolas", 10))
 label1.place(x=0, y=2)
 
-label2 = tk.Label(canvas1, text="Enter mobile phone number:", font=("Consolas", 9), bg="#D3D3D3")
-label2.place(x=1, y=5)
+phone_label = tk.Label(canvas1, text="Enter mobile phone number:", font=("Consolas", 9), bg="#D3D3D3")
+phone_label.place(x=2, y=5)
+lbl_61 = tk.Label(canvas1, text="+61", font=("Consolas", 10), bg="#D3D3D3")
+lbl_61.place(x=2, y=24)
 
-label3 = tk.Label(canvas1, text="Enter API Key:", font=("Consolas", 9), bg="#D3D3D3")
-label3.place(x=1, y=60)
+key_label = tk.Label(canvas1, text="Enter API Key:", font=("Consolas", 9), bg="#D3D3D3")
+key_label.place(x=2, y=60)
 
 dl_label = tk.Label(root, font=("Consolas", 8), bg="#D3D3D3")
 dl_label.place(x=5, y=230)
 
-entry1 = tk.Entry(canvas1, width=29, font=("Consolas", 10))
-entry1.place(x=4.5, y=25)
+phone_entry = tk.Entry(canvas1, width=26, font=("Consolas", 10))
+phone_entry.place(x=27, y=25)
 
-entry2 = tk.Entry(canvas1, width=29, font=("Consolas", 10))
-entry2.place(x=4.5, y=80)
+key_entry = tk.Entry(canvas1, width=29, font=("Consolas", 10))
+key_entry.place(x=5.5, y=80)
 
 var1 = tk.IntVar
 var2 = tk.IntVar
