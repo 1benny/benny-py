@@ -6,6 +6,9 @@ from time import sleep
 import os
 from pytube import YouTube
 
+#localfiles
+ico = "C:\\Program Files\\bitmap.ico"
+
 #definitions
 jsonerror= """JSONDecodeError: [404] ~~ Maybe URL is broken? 
 Try checking if Key file is present"""
