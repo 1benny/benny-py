@@ -24,11 +24,15 @@ def write_key():
     return
 
 def send():
-    f = open("sms_key.txt", "r")
     if var2.get() == 1: 
-        key = f.read()
-    else:  
+        try:
+            f = open("sms_key.txt", "r")
+            key = f.read()
+        except FileNotFoundError:
+            text1.insert(1.0, "You must set an API Key before using  the default option")
+    else:
         key = key_entry.get()
+
     url = 'https://textbelt.com/text'
     entry_number = phone_entry.get()
     phonenum = ("+61" + entry_number)
