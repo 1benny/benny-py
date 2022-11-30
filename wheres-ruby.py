@@ -44,9 +44,10 @@ Extremely simple.""")
 
 master = tk.Tk()
 master.title("List Creation Tool")
-master.geometry("500x600")
+master.geometry("400x500")
 master.resizable(False, False)
 
+entry_img = tk.PhotoImage(file="entry_box.png")
 
 canvas1 = tk.Canvas(master, bg="#3F3F3F")
 canvas1.place(relwidth=1, relheight=1)
@@ -65,6 +66,7 @@ filem.add_separator()
 filem.add_command(label="Close Window...", command=master.quit)
 menubar.add_cascade(label="File", menu=filem)
 
+
 # MENU -- EDIT
 editm = tk.Menu(menubar, tearoff=0)
 editm.add_command(label="Undo", command=None)
@@ -78,6 +80,7 @@ editm.add_command(label="Find", command=None)
 editm.add_command(label="Replace", command=None)
 editm.add_command(label="Find in Files", command=None)
 menubar.add_cascade(label="Edit", menu=editm)
+
 
 # MENU -- VIEW
 var_dark = tk.IntVar()
@@ -93,19 +96,22 @@ menubar.add_cascade(label="Help", menu=helpm)
 
 master.config(menu=menubar)
 
-label_line = tk.Label(canvas1, text="________________________________________________________________________________________", bg="#3F3F3F", fg="#dcdccc")
-label_line.place(x=24, y=19)
+label_line = tk.Label(canvas1, text="________________________________________________________________________", bg="#3F3F3F", fg="#dcdccc")
+label_line.place(x=17, y=19)
 
 title_label = tk.Label(canvas1, font=("Consolas", 11), text="Add or Remove Items to List", bg="#3F3F3F", fg="#dcdccc")
-title_label.place(relx=0.27, y=23)
+title_label.place(x=91, y=23)
 
-text1 = tk.Label(canvas1, text="""Continue with functions regarding save-as option, where the file saves and how
-Creating entries and labels/ styling the widget
-Incorporating the buttons with functions into adding and removing tasks to and from the list
+#entry_box = tk.Label(canvas1, image=entry_img)
+#entry_box.place(x=50, y=50)
 
+#text1 = tk.Label(canvas1, text="""Continue with functions regarding save-as option, where the file saves and how
+#Creating entries and labels/ styling the widget
+#Incorporating the buttons with functions into adding and removing tasks to and from the list
+#
 ## // Will using those buttons and adding/removing tasks affect the external 
-file, or will they only render in the widget until the user saves 
-the list to file??""")
-text1.pack(side="bottom")
+#file, or will they only render in the widget until the user saves 
+#the list to file??""")
+#text1.pack(side="bottom")
 
 master.mainloop()

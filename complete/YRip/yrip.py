@@ -99,7 +99,7 @@ root = tk.Tk()
 root.geometry("480x260")
 root.resizable(False, False)
 root.title("YRip")
-root.iconbitmap(r"C:\YRip\bitmap.ico")
+#root.iconbitmap(r"C:\YRip\bitmap.ico")
 
 canvas1 = tk.Canvas(root, bg="#D3D3D3")
 canvas1.place(relwidth=2, relheight=1.5, relx=0, rely=0.1)
