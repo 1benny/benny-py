@@ -17,9 +17,9 @@ class Winget(threading.Thread):
         self.plist = plist
 
 
-    @classmethod 
-    def func():
-    
+    @classmethod        ########################################################################################################################
+    def func():         ########################################################################################################################
+        return
 
 class App(customtkinter.CTk):
     
@@ -62,7 +62,7 @@ class App(customtkinter.CTk):
                                                      text="Search", 
                                                      text_font=("Consolas", 9),
                                                      fg_color = "#292929", 
-                                                     command=app.wsearchD)
+                                                     command=None)
         self.search_button.place(x=247, y=33)
 
         self.install_button = customtkinter.CTkButton(master=self.frame1, 
@@ -121,11 +121,6 @@ class App(customtkinter.CTk):
 
 
 
-
-
-
-
 if __name__ == "__main__":
     app = App()
     app.mainloop()
-
