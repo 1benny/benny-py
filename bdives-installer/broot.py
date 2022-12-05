@@ -9,6 +9,13 @@ from time import sleep
 customtkinter.set_appearance_mode("dark")
 customtkinter.set_default_color_theme("dark-blue")
 
+class Winget(threading.Thread):
+    def __init__(self, query, install, search, plist):
+        super().__init__()
+        self.query = query
+        self.install = install
+        self.plist = plist
+
 
 class Winget(object):
 
@@ -25,6 +32,10 @@ class Winget(object):
         
         thread = threading.Thread(target=target)
         thread.start()
+
+    @classmethod        ########################################################################################################################
+    def func():         ########################################################################################################################
+        return
 
         thread.join(timeout)
         if thread.is_alive():
@@ -79,7 +90,7 @@ class App(customtkinter.CTk):
                                                      text="Search", 
                                                      text_font=("Consolas", 9),
                                                      fg_color = "#292929", 
-                                                     command=self.search)
+                                                     command=None)
         self.search_button.place(x=247, y=33)
 #       |
         self.install_button = customtkinter.CTkButton(master=self.frame1, 
@@ -116,6 +127,23 @@ class App(customtkinter.CTk):
                                                corner_radius=6,
                                                xscrollcommand=self.h_scroll.set)
         self.output.place(x=5, y=58)
+
+    ### want this block of functions to inherit the methods of a premade class that includes "winget" class
+    
+    def wsearch():
+        app.output.insert(1.0, sub.getoutput(f"winget search {app.searchbox.get()}"))
+        
+        sleep(3)
+        return
+    
+    def wsearchD():
+        print("hello trees")
+        y = threading.Thread(target=app.wsearch)
+        y.start()
+
+        print(threading.active_count)
+
+
 
     def on_closing(self, event=0):
         self.destroy()
