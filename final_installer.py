@@ -8,37 +8,6 @@ customtkinter.set_appearance_mode("dark")
 customtkinter.set_default_color_theme("dark-blue")
 
 
-
-
-class Winget(object):
-
-    def __init__(self, cmd):
-        self.cmd = cmd
-        self.process = None
-
-    def run(self, timeout):
-        def target():
-#           print('Thread Started')
-            self.process = sub.Popen(self.cmd, shell=True)
-            self.process.communicate()
-#           print("Thread Finished")
-        
-        thread = threading.Thread(target=target)
-        thread.start()
-#       sleep(1)
-        
-        #print(self.process.returncode)
-        thread.join(timeout)
-        if thread.is_alive():
-            print("Terminating Process")
-            self.process.terminate()
-            thread.join()
-
-#       App.after(timeout)
-        #print(self.process.returncode)
-#       sleep(0.5)
-
-
 class App(customtkinter.CTk):
     
     cmd_dict = {
@@ -56,8 +25,7 @@ class App(customtkinter.CTk):
         self.title("Installer")
         self.geometry(f"{App.gwidth}x{App.gheight}")
         self.protocol("WM_DELETE_WINDOW", self.on_closing)
-        #threading.Thread(target=self.wsearch).start()
-
+#       |
         self.frame1 = customtkinter.CTkFrame(master=self)
         self.frame1.pack(padx=15, pady=10, fill="both", expand=True)
 #       |
@@ -86,7 +54,7 @@ class App(customtkinter.CTk):
                                                      text="Search", 
                                                      text_font=("Consolas", 9),
                                                      fg_color = "#292929", 
-                                                     command=self.run_cmd) #lambda: self.run_cmd("winget search ", self.searchbox.get()))
+                                                     command=self.search)
         self.search_button.place(x=247, y=33)
 #       |
         self.install_button = customtkinter.CTkButton(master=self.frame1, 
@@ -124,17 +92,31 @@ class App(customtkinter.CTk):
                                                xscrollcommand=self.h_scroll.set)
         self.output.place(x=5, y=58)
 
-    ### want this block of functions to inherit the methods of a premade class that includes "winget" class
-        
     def on_closing(self, event=0):
         self.destroy()
 
+    class WinGet(object):
+        def __init__(self, cmd):
+            self.cmd = cmd
+            self.process = None
 
-    def run_cmd(self):
-        inpt = Winget("winget list")
-        inpt.run(timeout=20)
-        #self.output.insert(1.0, inpt)
-        
+        def winget_run(self):
+            def target():
+                self.process = sub.Popen(self.cmd, shell=True)
+                self.process.communicate()
+                sleep(1)
+            
+            thread = threading.Thread(target=target)
+            thread.run()
+
+            thread.join(timeout=15)
+            if thread.is_alive():
+                thread.join()
+
+    def search(self):
+        search = self.WinGet("echo hello world")
+        search.winget_run()
+        return
 
 
 #done = False
@@ -143,3 +125,4 @@ class App(customtkinter.CTk):
 if __name__ == "__main__":
     app = App()
     app.mainloop()
+    app.quit()

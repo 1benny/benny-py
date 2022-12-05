@@ -41,5 +41,4 @@ inp = input(">> ")
 
 
 if any(i in myList for i in inp.split()):
-    command = Winget(inp)
-    command.run(timeout=20)
+    Winget(inp).run(timeout=10)
