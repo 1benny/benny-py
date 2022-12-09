@@ -6,4 +6,3 @@ $> "currentapp" holds all files/requirements for current working project.
 
 $> "complete" will hold all completed projects that have an executable form (not finished)
 
-$> fix this fucking branch shit how 

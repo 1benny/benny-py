@@ -6,15 +6,19 @@ from tkinter import *
 master = tk.Tk()
 master.geometry()
 
+frame = Frame()
+frame.place()
 
-canvas1 = Canvas(master)
-canvas1.place()
+canvas = Canvas()
+canvas.place()
 
-entry1 = Entry(canvas1)
-entry1.place()
+entry = Entry()
+entry.place()
 
-button1 = Button(canvas1, command=None)
-button1.place()
+button = Button()
+button.place()
+
+
 
 
 master.mainloop()
