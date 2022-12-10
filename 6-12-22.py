@@ -1,0 +1,180 @@
+import tkinter as tk
+import customtkinter as ttkk
+import subprocess as sub
+import threading
+
+# create/open/write entered information to a file 
+
+# create a class for an object that has the properties "date" "ammount" "item"
+
+# create a GUI to enter these values as data
+
+# have the data written to text file in a specific format
+
+class Spending(object):
+    def __init__(self, date, amount, item):
+        self.date = date
+        self.amount = amount 
+        self.item = item
+
+    def write(self):
+        format = (f"\n{self.date}    ::    {self.amount}    ::    {self.item}")
+        with open("spending.txt", "a") as f:
+            f.write(format)
+            
+            f.close
+        if f.closed == False:
+            f.close
+        return
+    
+
+ttkk.set_appearance_mode("dark")
+ttkk.set_default_color_theme("dark-blue")
+
+class App(ttkk.CTk):
+
+    def __init__(self):
+        super().__init__()
+        self.title("Spending")
+        self.geometry("430x300")
+        self.configure(bg="#292929")
+        self.resizable(False, False)
+#       |
+        global current_state
+#   
+        self.frame = ttkk.CTkFrame(master=self,                         # primary frame
+                                   fg_color="#3D3D3D") 
+        self.frame.pack(padx=15, pady=10, fill="x")
+#       |
+        self.frame2 = ttkk.CTkFrame(master=self.frame,                  # secondary frame
+                                    fg_color="#292929",
+                                    width=360, 
+                                    height=70)
+        self.frame2.pack(side="top", pady=40)
+#       |
+        self.frame3 = ttkk.CTkFrame(master=self, 
+                                    fg_color="#ffffff", 
+                                    width=360, 
+                                    height=300)
+        self.frame3.pack(fill="both")           
+#~~~
+#~~~
+        self.title_label = ttkk.CTkLabel(master=self.frame,             # title label
+                                         text="Write a new entry for spendings", 
+                                         text_font=("Montserrat Medium", 12))
+        self.title_label.place(x=60, y=6)    
+#       |        
+        self.date_label = ttkk.CTkLabel(master=self.frame,              # label
+                                        text="Date",
+                                        bg_color="#292929", 
+                                        width=0,
+                                        text_font=("Montserrat Medium", 10))
+        self.date_label.place(x=67, y=45)
+#       |
+        self.amount_label = ttkk.CTkLabel(master=self.frame,            # label
+                                          text="Amount",
+                                          bg_color="#292929", 
+                                          text_font=("Montserrat Medium", 10))
+        self.amount_label.place(x=130, y=45)
+#       |
+        self.item_label = ttkk.CTkLabel(master=self.frame,              # label
+                                        text="Item", 
+                                        bg_color="#292929",
+                                        width=0, 
+                                        text_font=("Montserrat Medium", 10))
+        self.item_label.place(x=295, y=45)
+#~~~
+#~~~
+        self.date_box = ttkk.CTkEntry(master=self.frame,                # entry field
+                                      width=80, 
+                                      height=25, 
+                                      text_font=("Montserrat Medium", 8), 
+                                      border_color="#292929",
+                                      fg_color="#3d3d3d",
+                                      bg_color="#292929")
+        self.date_box.place(x=45, y=70)
+#       |
+        self.amount_box = ttkk.CTkEntry(master=self.frame,              # entry field
+                                        width=50, 
+                                        height=25,
+                                        text_font=("Montserrat Medium", 8), 
+                                        border_color="#292929", 
+                                        fg_color="#3d3d3d",
+                                        bg_color="#292929")
+        self.amount_box.place(x=175, y=70)
+#       |
+        self.item_box = ttkk.CTkEntry(master=self.frame,                # entry field
+                                      width=80, 
+                                      height=25,
+                                      text_font=("Montserrat Medium", 8), 
+                                      border_color="#292929", 
+                                      fg_color="#3d3d3d",
+                                      bg_color="#292929")
+        self.item_box.place(x=273, y=70)
+#~~~
+#~~~
+        ttkk.CTkLabel(master=self.frame,                                # seperator "::"
+                      text="::", 
+                      bg_color="#292929",
+                      width=0,
+                      text_font=("Montserrat Medium", 10)).place(x=145, y=67)        
+        ttkk.CTkLabel(master=self.frame,                                # seperator "::"
+                      text="::",
+                      bg_color="#292929", 
+                      width=0,
+                      text_font=("Montserrat Medium", 10)).place(x=245, y=67)
+#~~~
+#~~~    
+        self.click_write = ttkk.CTkButton(master=self.frame,
+                                          text="Add entry",
+                                          text_font=("Montserrat Medium", 10),
+                                          height=0,
+                                          width=360,
+                                          #fg_color="#292929",
+                                          command=self.call_entry)
+        self.click_write.place(x=20, y=115)
+#~~~
+#~~~
+        self.success_label = ttkk.CTkLabel(master=self.frame,
+                                           text="", 
+                                           text_font=("Montserrat Italic", 9), 
+                                           width=0)
+        self.success_label.pack(side="bottom", pady=10)
+
+
+    def call_entry(self):
+        def result():
+            f = open("spending.txt", "r")
+            check = f.readlines()[-1]
+            if date and amount and item in check.split():
+                self.success_label.configure(text="success...")
+            else:
+                self.success_label.configure(text="failed...")
+            f.close()
+            
+            return
+        def delete():
+                    self.date_box.delete(0, "end")
+                    self.amount_box.delete(0, "end")
+                    self.item_box.delete(0, "end")
+                    return
+        def clear_res():
+            self.success_label.configure(text="")
+            return
+
+        date = self.date_box.get()
+        amount = self.amount_box.get()
+        item = self.item_box.get()
+        
+        timeout = 1000
+        new_line = Spending(self.date_box.get(), self.amount_box.get(), self.item_box.get())
+        new_line.write()
+
+        self.after(timeout, result)
+        self.success_label.after(5000, clear_res)
+        self.after_idle(delete)
+
+        
+if __name__ == "__main__":
+    app = App()
+    app.mainloop()
