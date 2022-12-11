@@ -36,55 +36,66 @@ class App(ttkk.CTk):
     def __init__(self):
         super().__init__()
         self.title("Spending")
-        self.geometry("430x300")
+        self.geometry("430x230")
         self.configure(bg="#292929")
-        self.resizable(False, False)
-#       |
+        self.resizable(False, True)
+        self.maxsize(430,745)
+        self.minsize(430, 230)
+        
         global current_state
-#   
+          
         self.frame = ttkk.CTkFrame(master=self,                         # primary frame
                                    fg_color="#3D3D3D") 
         self.frame.pack(padx=15, pady=10, fill="x")
-#       |
+        #
         self.frame2 = ttkk.CTkFrame(master=self.frame,                  # secondary frame
                                     fg_color="#292929",
                                     width=360, 
                                     height=70)
         self.frame2.pack(side="top", pady=40)
-#       |
+        #       
         self.frame3 = ttkk.CTkFrame(master=self, 
-                                    fg_color="#ffffff", 
+                                    fg_color="#3d3d3d", 
                                     width=360, 
-                                    height=300)
-        self.frame3.pack(fill="both")           
-#~~~
-#~~~
+                                    height=900)
+        self.frame3.pack(padx=15, pady=(0, 10), fill="both")           
+        #
+        self.pull_down = ttkk.CTkLabel(master=self.frame3, 
+                                       text="""  ↓                                                                                                                      ↓""",
+                                       width=0, 
+                                       height=0)
+        self.pull_down.place(relx=0.02, rely=0.96, anchor="sw")#relx=0.01, rely=0.3, )
+        #
+        self.list_diplay = ttkk.CTkTextbox()
+        #
+        #
         self.title_label = ttkk.CTkLabel(master=self.frame,             # title label
                                          text="Write a new entry for spendings", 
-                                         text_font=("Montserrat Medium", 12))
+                                         text_font=("Montserrat Medium", 12), 
+                                         text_color="#dcdccc")
         self.title_label.place(x=60, y=6)    
-#       |        
+        #        
         self.date_label = ttkk.CTkLabel(master=self.frame,              # label
                                         text="Date",
                                         bg_color="#292929", 
                                         width=0,
                                         text_font=("Montserrat Medium", 10))
         self.date_label.place(x=67, y=45)
-#       |
+        #
         self.amount_label = ttkk.CTkLabel(master=self.frame,            # label
                                           text="Amount",
                                           bg_color="#292929", 
                                           text_font=("Montserrat Medium", 10))
         self.amount_label.place(x=130, y=45)
-#       |
+        #
         self.item_label = ttkk.CTkLabel(master=self.frame,              # label
                                         text="Item", 
                                         bg_color="#292929",
                                         width=0, 
                                         text_font=("Montserrat Medium", 10))
         self.item_label.place(x=295, y=45)
-#~~~
-#~~~
+        #
+        #
         self.date_box = ttkk.CTkEntry(master=self.frame,                # entry field
                                       width=80, 
                                       height=25, 
@@ -93,7 +104,7 @@ class App(ttkk.CTk):
                                       fg_color="#3d3d3d",
                                       bg_color="#292929")
         self.date_box.place(x=45, y=70)
-#       |
+        #       
         self.amount_box = ttkk.CTkEntry(master=self.frame,              # entry field
                                         width=50, 
                                         height=25,
@@ -102,7 +113,7 @@ class App(ttkk.CTk):
                                         fg_color="#3d3d3d",
                                         bg_color="#292929")
         self.amount_box.place(x=175, y=70)
-#       |
+        #       
         self.item_box = ttkk.CTkEntry(master=self.frame,                # entry field
                                       width=80, 
                                       height=25,
@@ -111,8 +122,8 @@ class App(ttkk.CTk):
                                       fg_color="#3d3d3d",
                                       bg_color="#292929")
         self.item_box.place(x=273, y=70)
-#~~~
-#~~~
+        #
+        #
         ttkk.CTkLabel(master=self.frame,                                # seperator "::"
                       text="::", 
                       bg_color="#292929",
@@ -123,8 +134,8 @@ class App(ttkk.CTk):
                       bg_color="#292929", 
                       width=0,
                       text_font=("Montserrat Medium", 10)).place(x=245, y=67)
-#~~~
-#~~~    
+        #
+        # 
         self.click_write = ttkk.CTkButton(master=self.frame,
                                           text="Add entry",
                                           text_font=("Montserrat Medium", 10),
@@ -133,14 +144,15 @@ class App(ttkk.CTk):
                                           #fg_color="#292929",
                                           command=self.call_entry)
         self.click_write.place(x=20, y=115)
-#~~~
-#~~~
+        #
+        #
         self.success_label = ttkk.CTkLabel(master=self.frame,
                                            text="", 
                                            text_font=("Montserrat Italic", 9), 
-                                           width=0)
-        self.success_label.pack(side="bottom", pady=10)
-
+                                           width=0,
+                                           height=20)
+        self.success_label.pack(side="bottom")
+        #   -   -   -   -   -   -   -   -   -   -   -   -   -   -   -   -   -   -   -   -   -   -   -   -   #
 
     def call_entry(self):
         def result():
