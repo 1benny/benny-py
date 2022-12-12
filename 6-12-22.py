@@ -12,6 +12,7 @@ import threading
 # have the data written to text file in a specific format
 
 class Spending(object):
+    
     def __init__(self, date, amount, item):
         self.date = date
         self.amount = amount 
@@ -26,24 +27,33 @@ class Spending(object):
         if f.closed == False:
             f.close
         return
-    
+
+class Manipulate(Spending):
+    def __init__(self, date, amount, item):
+        self.date = date
+        self.amount = amount
+        self.item = item
+
 
 ttkk.set_appearance_mode("dark")
 ttkk.set_default_color_theme("dark-blue")
 
 class App(ttkk.CTk):
 
+    global font1
+    font1 = "Montserrat Medium"
+
     def __init__(self):
         super().__init__()
         self.title("Spending")
-        self.geometry("430x230")
+        self.geometry("430x245")
         self.configure(bg="#292929")
         self.resizable(False, True)
         self.maxsize(430,745)
-        self.minsize(430, 230)
+        self.minsize(430, 245)
+
         
-        global current_state
-          
+
         self.frame = ttkk.CTkFrame(master=self,                         # primary frame
                                    fg_color="#3D3D3D") 
         self.frame.pack(padx=15, pady=10, fill="x")
@@ -64,11 +74,18 @@ class App(ttkk.CTk):
                                        text="""  ↓                                                                                                                      ↓""",
                                        width=0, 
                                        height=0)
-        self.pull_down.place(relx=0.02, rely=0.96, anchor="sw")#relx=0.01, rely=0.3, )
+        self.pull_down.place(relx=0.02, rely=0.95, anchor="sw")
         #
-        self.list_diplay = ttkk.CTkTextbox()
-        #
-        #
+        self.list_display = ttkk.CTkTextbox(master=self.frame3,
+                                            state="disabled",
+                                            border_width=0,
+                                            width=330,
+                                            height=700,
+                                            text_font=("Consolas", 9),
+                                            fg_color="#3D3D3D")
+        self.list_display.pack(expand=True, pady=(0, 5))
+
+
         self.title_label = ttkk.CTkLabel(master=self.frame,             # title label
                                          text="Write a new entry for spendings", 
                                          text_font=("Montserrat Medium", 12), 
@@ -94,8 +111,8 @@ class App(ttkk.CTk):
                                         width=0, 
                                         text_font=("Montserrat Medium", 10))
         self.item_label.place(x=295, y=45)
-        #
-        #
+
+
         self.date_box = ttkk.CTkEntry(master=self.frame,                # entry field
                                       width=80, 
                                       height=25, 
@@ -123,7 +140,6 @@ class App(ttkk.CTk):
                                       bg_color="#292929")
         self.item_box.place(x=273, y=70)
         #
-        #
         ttkk.CTkLabel(master=self.frame,                                # seperator "::"
                       text="::", 
                       bg_color="#292929",
@@ -134,17 +150,24 @@ class App(ttkk.CTk):
                       bg_color="#292929", 
                       width=0,
                       text_font=("Montserrat Medium", 10)).place(x=245, y=67)
-        #
-        # 
+
+
         self.click_write = ttkk.CTkButton(master=self.frame,
                                           text="Add entry",
-                                          text_font=("Montserrat Medium", 10),
+                                          text_font=(font1, 10),
                                           height=0,
-                                          width=360,
+                                          width=178,
                                           #fg_color="#292929",
                                           command=self.call_entry)
         self.click_write.place(x=20, y=115)
         #
+        self.print_list = ttkk.CTkButton(master=self.frame,
+                                         text="Print list", 
+                                         text_font=(font1, 10),
+                                         height=0, 
+                                         width=177.8, 
+                                         command=self.display_list)
+        self.print_list.place(x=203, y=115)
         #
         self.success_label = ttkk.CTkLabel(master=self.frame,
                                            text="", 
@@ -186,7 +209,22 @@ class App(ttkk.CTk):
         self.success_label.after(5000, clear_res)
         self.after_idle(delete)
 
+    def display_list(self):
+        self.list_display.configure(state="normal")
+        with open("spending.txt", "r") as f:
+            out = f.readlines()
+            f.close()
+            
+            if f.closed == False:
+                f.close()
         
+        self.list_display.insert(1.0, out)
+        self.list_display.configure(state="disabled")
+        return
+
+
+
+
 if __name__ == "__main__":
     app = App()
     app.mainloop()
