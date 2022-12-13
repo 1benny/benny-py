@@ -71,19 +71,19 @@ class App(ttkk.CTk):
         self.frame3.pack(padx=15, pady=(0, 10), fill="both")           
         #
         self.pull_down = ttkk.CTkLabel(master=self.frame3, 
-                                       text="""  ↓                                                                                                                      ↓""",
+                                       text="...",
                                        width=0, 
                                        height=0)
-        self.pull_down.place(relx=0.02, rely=0.95, anchor="sw")
+        self.pull_down.place(relx=0.485, rely=0.7, anchor="w")
         #
         self.list_display = ttkk.CTkTextbox(master=self.frame3,
                                             state="disabled",
                                             border_width=0,
-                                            width=330,
-                                            height=700,
-                                            text_font=("Consolas", 9),
+                                            width=360,
+                                            height=690,
+                                            text_font=("Consolas", 8),
                                             fg_color="#3D3D3D")
-        self.list_display.pack(expand=True, pady=(0, 5))
+        self.list_display.pack(expand=True, padx=(25, 0), pady=(0, 10))
 
 
         self.title_label = ttkk.CTkLabel(master=self.frame,             # title label
@@ -212,7 +212,7 @@ class App(ttkk.CTk):
     def display_list(self):
         self.list_display.configure(state="normal")
         with open("spending.txt", "r") as f:
-            out = f.readlines()
+            out = f.read()
             f.close()
             
             if f.closed == False:
