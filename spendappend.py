@@ -28,12 +28,6 @@ class Spending(object):
             f.close
         return
 
-class Manipulate(Spending):
-    def __init__(self, date, amount, item):
-        self.date = date
-        self.amount = amount
-        self.item = item
-
 
 ttkk.set_appearance_mode("dark")
 ttkk.set_default_color_theme("dark-blue")
