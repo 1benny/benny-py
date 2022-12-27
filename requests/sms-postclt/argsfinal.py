@@ -2,13 +2,6 @@ import requests
 import argparse
 
 
-
-# def quota():
-#     getq = requests.get(f"https://textbelt.com/quota/" + args.d)
-#     format(getq, str)
-#     quota_stat = quota()
-#     return quota_stat
-
 parser = argparse.ArgumentParser(description="Send an SMS via POST request")
 parser.add_argument('-p', metavar='--phone', type=str,  help="Used to pass mobile phone number only in E.164 format")
 parser.add_argument('-m', metavar='--message', type=str, help="Used to pass message content of SMS ~~ TextBelt denies any requests containing profanity")
