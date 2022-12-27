@@ -3,7 +3,7 @@ import customtkinter as ttkk
 import threading 
 import tkinter as tk
 
-class App(ttkk.CTk), :
+class App(ttkk.CTk):
 
     def __init__(self):
         super().__init__()

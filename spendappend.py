@@ -75,14 +75,14 @@ class App(ttkk.CTk):
                                             border_width=0,
                                             width=360,
                                             height=690,
-                                            font=("Consolas", 8),
+                                            text_font=("Consolas", 8),
                                             fg_color="#3D3D3D")
         self.list_display.pack(expand=True, padx=(25, 0), pady=(0, 10))
 
 
         self.title_label = ttkk.CTkLabel(master=self.frame,             # title label
                                          text="Write a new entry for spendings", 
-                                         font=("Montserrat Medium", 12), 
+                                         text_font=("Montserrat Medium", 12), 
                                          text_color="#dcdccc")
         self.title_label.place(x=60, y=6)    
         #        
@@ -90,27 +90,27 @@ class App(ttkk.CTk):
                                         text="Date",
                                         bg_color="#292929", 
                                         width=0,
-                                        font=("Montserrat Medium", 10))
+                                        text_font=("Montserrat Medium", 10))
         self.date_label.place(x=67, y=45)
         #
         self.amount_label = ttkk.CTkLabel(master=self.frame,            # label
                                           text="Amount",
                                           bg_color="#292929", 
-                                          font=("Montserrat Medium", 10))
+                                          text_font=("Montserrat Medium", 10))
         self.amount_label.place(x=130, y=45)
         #
         self.item_label = ttkk.CTkLabel(master=self.frame,              # label
                                         text="Item", 
                                         bg_color="#292929",
                                         width=0, 
-                                        font=("Montserrat Medium", 10))
+                                        text_font=("Montserrat Medium", 10))
         self.item_label.place(x=295, y=45)
 
 
         self.date_box = ttkk.CTkEntry(master=self.frame,                # entry field
                                       width=80, 
                                       height=25, 
-                                      font=("Montserrat Medium", 8), 
+                                      text_font=("Montserrat Medium", 8), 
                                       border_color="#292929",
                                       fg_color="#3d3d3d",
                                       bg_color="#292929")
@@ -119,7 +119,7 @@ class App(ttkk.CTk):
         self.amount_box = ttkk.CTkEntry(master=self.frame,              # entry field
                                         width=50, 
                                         height=25,
-                                        font=("Montserrat Medium", 8), 
+                                        text_font=("Montserrat Medium", 8), 
                                         border_color="#292929", 
                                         fg_color="#3d3d3d",
                                         bg_color="#292929")
@@ -128,7 +128,7 @@ class App(ttkk.CTk):
         self.item_box = ttkk.CTkEntry(master=self.frame,                # entry field
                                       width=80, 
                                       height=25,
-                                      font=("Montserrat Medium", 8), 
+                                      text_font=("Montserrat Medium", 8), 
                                       border_color="#292929", 
                                       fg_color="#3d3d3d",
                                       bg_color="#292929")
@@ -138,17 +138,17 @@ class App(ttkk.CTk):
                       text="::", 
                       bg_color="#292929",
                       width=0,
-                      font=("Montserrat Medium", 10)).place(x=145, y=67)        
+                      text_font=("Montserrat Medium", 10)).place(x=145, y=67)        
         ttkk.CTkLabel(master=self.frame,                                # seperator "::"
                       text="::",
                       bg_color="#292929", 
                       width=0,
-                      font=("Montserrat Medium", 10)).place(x=245, y=67)
+                      text_font=("Montserrat Medium", 10)).place(x=245, y=67)
 
 
         self.click_write = ttkk.CTkButton(master=self.frame,
                                           text="Add entry",
-                                          font=(font1, 10),
+                                          text_font=(font1, 10),
                                           height=0,
                                           width=178,
                                           #fg_color="#292929",
@@ -157,7 +157,7 @@ class App(ttkk.CTk):
         #
         self.print_list = ttkk.CTkButton(master=self.frame,
                                          text="Print list", 
-                                         font=(font1, 10),
+                                         text_font=(font1, 10),
                                          height=0, 
                                          width=177.8, 
                                          command=self.display_list)
@@ -165,7 +165,7 @@ class App(ttkk.CTk):
         #
         self.success_label = ttkk.CTkLabel(master=self.frame,
                                            text="", 
-                                           font=("Montserrat Italic", 9), 
+                                           text_font=("Montserrat Italic", 9), 
                                            width=0,
                                            height=20)
         self.success_label.pack(side="bottom")
