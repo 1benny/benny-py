@@ -1,0 +1,41 @@
+import os
+
+modules = [
+"altgraph",
+"certifi",
+"chardet",
+"charset-normalizer",
+"customtkinter",
+"darkdetect",
+"distro",
+"elevate",
+"future",
+"httplib2",
+"idna",
+"numpy",
+"pefile",
+"Pillow",
+"pip",
+"pycairo",
+"pycryptodome",
+"pycurl",
+"PyGObject",
+"pyinstaller",
+"pyinstaller-hooks-contrib",
+"pyparsing",
+"PySimpleSOAP",
+"python-apt",
+"python-debian",
+"python-debianbts",
+"pytube",
+"pywin32-ctypes",
+"reportbug",
+"requests",
+"setuptools",
+"six",
+"urllib",
+"wheel",
+]
+
+for i in modules:
+    os.system(f"pip install {i}")
