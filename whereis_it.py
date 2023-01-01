@@ -4,10 +4,10 @@ import elevate
 def find(filename):
     result = []
 
-    for root, dir, files in os.walk("C:\\Users\\Ben\\Desktop\\"):
+    for root, dir, files in os.walk("C:\\Users\\Ben\\"):
         if filename in files:
             result.append(os.path.join(root, filename))
         return result
 
 
-print(find("whereis.txt"))
+print(find("new 1.txt"))
