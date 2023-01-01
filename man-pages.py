@@ -1,7 +1,8 @@
 import os
 import subprocess as sub
 import argparse
-
+import sys
+import time
 
 man = argparse.ArgumentParser(description="Read manual pages for a specified program")
 man.add_argument("m", metavar="Only required positional argument, used to specify man-page for program", type=str, default=False, help="Name of the program")
@@ -15,11 +16,18 @@ search = f"{mans}{args.m}.txt"
 ### Test to see if function works by printing yes if the directory exists
         
 if os.path.exists(search.replace("/", "\\")) == True:
-    #print(os.listdir(mans))
-    with open(search.replace("/", "\\"), "r") as f:
-        content = f.read()
-        print(content)
-        f.close
-
+    try:
+        with open(search.replace("/", "\\"), "r", encoding="utf-8") as f:
+            content = f.read()
+            print(content)
+            f.close
+    except UnicodeDecodeError:
+        print('Having trouble with this one...')
+        time.sleep(2)
+        print('Try again later...')
+    except UnicodeError:
+        print('Having trouble with this one...')
+        time.sleep(2)
+        print('Try again later...')
 else:
     print(f"Couldn't find man page for '{args.m}'")
