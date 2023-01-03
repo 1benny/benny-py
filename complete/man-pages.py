@@ -1,19 +1,15 @@
 import os
-import subprocess as sub
 import argparse
-import sys
 import time
 
 man = argparse.ArgumentParser(description="Read manual pages for a specified program")
-man.add_argument("m", metavar="Only required positional argument, used to specify man-page for program", type=str, default=False, help="Name of the program")
+man.add_argument("-m", type=str, default=False, help="Name of the program")
 args = man.parse_args()
 
 
 mans = "C:/Users/Ben/Man/"
 search = f"{mans}{args.m}.txt"
 
-
-### Test to see if function works by printing yes if the directory exists
         
 if os.path.exists(search.replace("/", "\\")) == True:
     try:

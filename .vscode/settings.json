@@ -1,6 +1,0 @@
-{
-    "git.ignoreLimitWarning": true,
-    "git.autoRepositoryDetection": false,
-    "git.confirmEmptyCommits": true,
-    "scm.autoReveal": false
-}
