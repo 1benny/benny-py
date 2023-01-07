@@ -3,7 +3,7 @@ import argparse
 import time
 
 man = argparse.ArgumentParser(description="Read manual pages for a specified program")
-man.add_argument("-m", type=str, default=False, help="Name of the program")
+man.add_argument("m", type=str, default=False, help="Name of the program")
 args = man.parse_args()
 
 
@@ -27,3 +27,6 @@ if os.path.exists(search.replace("/", "\\")) == True:
         print('Try again later...')
 else:
     print(f"Couldn't find man page for '{args.m}'")
+    with open("C:\\Users\\Ben\\Desktop\\shit\\Python\\missing-manpages.txt", "a") as f:
+        f.write(f"{args.m}.txt\n")
+        f.close()
