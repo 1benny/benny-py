@@ -1,1 +1,0 @@
-logintype:guest shippingcheckbox:true firstname:Jem lastname:Bally emailaddress:bdssss@gmail.com streetaddress:gg, Georgia suburb: city:Georgia country:13 state: statezone:182 postcode:2222 telephone:2222222222 passwordnew: passwordconfirm:
