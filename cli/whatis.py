@@ -37,4 +37,3 @@ else:
             
     except KeyboardInterrupt:
         print("\nWhatever fuckwit")
-      
