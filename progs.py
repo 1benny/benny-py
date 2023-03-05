@@ -21,4 +21,4 @@ wingets = [
 ]
 
 for i in wingets:
-    os.system(f"winget install {i}")
+    os.system(f"winget install {i} --accept-source-agreements --accept-package-agreements")
