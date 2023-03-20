@@ -6,7 +6,7 @@ from time import sleep
 from tkinter import filedialog
 from tkinter import ttk
 from pytube import exceptions
-from PIL import ImageTk, Image
+#from PIL import ImageTk, Image
 
 
 def search():

@@ -1,0 +1,90 @@
+   -    - Name                                          Id                                            Version            Source
+-----------------------------------------------------------------------------------------------------------------------
+Destiny Item Manager (DIM)                    9P8Q2XRW9CV7                                  1.1.1.0            msstore
+7-Zip 22.01 (x64)                             7zip.7zip                                     22.01              winget
+iTunes                                        AppleInc.iTunes_nzyj5cx40ttqa                 12127.1.57051.0    
+Audacity 3.2.4                                Audacity.Audacity                             3.2.4              winget
+BurnAware Free 16.0                           XP9MKFMRRCVKX1                                Unknown            msstore
+Windows Driver Package - Apple Inc. Apple OD… D6B4CB6AD2F81752C2EF8DCF6AD5EBC567ADD45C      05/17/2010 3.1.0.0 
+Discord                                       Discord.Discord                               1.0.9011           winget
+Git                                           Git.Git                                       2.39.2             winget
+Google Chrome                                 Google.Chrome                                 111.0.5563.65      winget
+Wget                                          JernejSimoncic.Wget                           1.21.3             winget
+LLVM                                          LLVM.LLVM                                     15.0.7             winget
+Microsoft Edge                                Microsoft.Edge                                111.0.1661.44      winget
+Microsoft Edge Update                         Microsoft Edge Update                         1.3.173.49         
+Microsoft Edge WebView2 Runtime               Microsoft.EdgeWebView2Runtime                 111.0.1661.44      winget
+Minecraft Launcher                            Microsoft.4297127D64EC6_8wekyb3d8bbwe         1.1.28.0           
+Cortana                                       Microsoft.549981C3F5F10_8wekyb3d8bbwe         4.2204.13303.0     
+MSN Weather                                   Microsoft.BingWeather_8wekyb3d8bbwe           4.53.50501.0       
+App Installer                                 Microsoft.DesktopAppInstaller_8wekyb3d8bbwe   1.19.10173.0       
+Gaming Services                               Microsoft.GamingServices_8wekyb3d8bbwe        10.75.13001.0      
+Get Help                                      Microsoft.GetHelp_8wekyb3d8bbwe               10.2301.10372.0    
+Microsoft Tips                                Microsoft.Getstarted_8wekyb3d8bbwe            10.2210.3.0        
+HEIF Image Extensions                         Microsoft.HEIFImageExtension_8wekyb3d8bbwe    1.0.60431.0        
+English (United Kingdom) Local Experience Pa… Microsoft.LanguageExperiencePacken-GB_8wekyb… 19041.44.141.0     
+Paint 3D                                      Microsoft.MSPaint_8wekyb3d8bbwe               6.2203.1037.0      
+3D Viewer                                     Microsoft.Microsoft3DViewer_8wekyb3d8bbwe     7.2211.24012.0     
+Microsoft Edge                                Microsoft.MicrosoftEdge.Stable_8wekyb3d8bbwe  111.0.1661.44      
+Microsoft 365 (Office)                        Microsoft.MicrosoftOfficeHub_8wekyb3d8bbwe    18.2301.1131.0     
+Solitaire & Casual Games                      Microsoft.MicrosoftSolitaireCollection_8weky… 4.15.12020.0       
+Microsoft Sticky Notes                        Microsoft.MicrosoftStickyNotes_8wekyb3d8bbwe  4.5.9.0            
+Mixed Reality Portal                          Microsoft.MixedReality.Portal_8wekyb3d8bbwe   2000.21051.1282.0  
+Microsoft People                              Microsoft.People_8wekyb3d8bbwe                10.2105.4.0        
+Snip & Sketch                                 Microsoft.ScreenSketch_8wekyb3d8bbwe          10.2008.2277.0     
+Store Experience Host                         Microsoft.StorePurchaseApp_8wekyb3d8bbwe      12301.1401.8.0     
+VP9 Video Extensions                          Microsoft.VP9VideoExtensions_8wekyb3d8bbwe    1.0.52781.0        
+Microsoft Pay                                 Microsoft.Wallet_8wekyb3d8bbwe                2.4.18324.0        
+Web Media Extensions                          Microsoft.WebMediaExtensions_8wekyb3d8bbwe    1.0.42192.0        
+Webp Image Extensions                         Microsoft.WebpImageExtension_8wekyb3d8bbwe    1.0.52351.0        
+Microsoft Photos                              Microsoft.Windows.Photos_8wekyb3d8bbwe        2022.30120.12007.0 
+Windows Clock                                 Microsoft.WindowsAlarms_8wekyb3d8bbwe         11.2212.2.0        
+Windows Calculator                            Microsoft.WindowsCalculator_8wekyb3d8bbwe     11.2210.0.0        
+Windows Camera                                Microsoft.WindowsCamera_8wekyb3d8bbwe         2021.105.10.0      
+Feedback Hub                                  Microsoft.WindowsFeedbackHub_8wekyb3d8bbwe    1.2212.3501.0      
+Windows Maps                                  Microsoft.WindowsMaps_8wekyb3d8bbwe           11.2210.6.0        
+Windows Voice Recorder                        Microsoft.WindowsSoundRecorder_8wekyb3d8bbwe  10.2103.28.0       
+Microsoft Store                               Microsoft.WindowsStore_8wekyb3d8bbwe          22301.1401.6.0     
+Windows Package Manager Source (winget)       Microsoft.Winget.Source_8wekyb3d8bbwe         2023.320.1002.412  
+Xbox Game Bar Plugin                          Microsoft.XboxGameOverlay_8wekyb3d8bbwe       1.54.4001.0        
+Xbox Game Bar                                 Microsoft.XboxGamingOverlay_8wekyb3d8bbwe     5.823.1271.0       
+Xbox Identity Provider                        Microsoft.XboxIdentityProvider_8wekyb3d8bbwe  12.95.3001.0       
+Xbox Game Speech Window                       Microsoft.XboxSpeechToTextOverlay_8wekyb3d8b… 1.21.13002.0       
+Phone Link                                    Microsoft.YourPhone_8wekyb3d8bbwe             1.23012.167.0      
+Windows Media Player                          Microsoft.ZuneMusic_8wekyb3d8bbwe             11.2212.31.0       
+Films & TV                                    Microsoft.ZuneVideo_8wekyb3d8bbwe             10.22091.10031.0   
+NVIDIA Control Panel                          NVIDIACorp.NVIDIAControlPanel_56jybvy8sckqj   8.1.964.0          
+Notepad++ (64-bit x64)                        Notepad++.Notepad++                           8.4.9              winget
+Npcap                                         NpcapInst                                     1.71               
+Microsoft 365 - en-us                         O365HomePremRetail - en-us                    16.0.16130.20306   
+Microsoft OneDrive                            Microsoft.OneDrive                            23.048.0305.0002   winget
+Spotify                                       Spotify.Spotify                               1.2.6.863.ge7902f… winget
+Steam                                         Valve.Steam                                   2.10.91.91         winget
+USBPcap 1.5.4.0                               USBPcap                                       1.5.4.0            
+Wacom Tablet                                  Wacom.WacomTabletDriver                       6.4.0-11           winget
+WinRAR 6.21 (64-bit)                          RARLab.WinRAR                                 6.21.0             winget
+Wireshark 4.0.4 64-bit                        WiresharkFoundation.Wireshark                 4.0.4              winget
+balenaEtcher 1.14.3                           Balena.Etcher                                 1.14.3             winget
+Mail and Calendar                             microsoft.windowscommunicationsapps_8wekyb3d… 16005.14326.21374… 
+Synergy (64-bit)                              {0E915169-5164-477E-8D63-2FC946D28EE0}        1.14.6             
+Microsoft Visual C++ 2010  x64 Redistributab… Microsoft.VCRedist.2010.x64                   10.0.40219         winget
+Microsoft GameInput                           {1F2B6AF3-C260-8666-5950-E3FEDBC851D6}        10.1.22621.3036    
+Microsoft .NET SDK 7.0.102 (x64)              Microsoft.DotNet.SDK.7                        7.0.102            winget
+Microsoft Visual C++ 2015-2022 Redistributab… Microsoft.VCRedist.2015+.x64                  14.32.31332.0      winget
+Epic Online Services                          {4757C19B-4CE3-418C-91D2-E15E938091FB}        2.0.39.0           
+Python 3.11.2 (64-bit)                        {4d5f29cf-3d3f-455f-bd47-5a52fb830b25}        3.11.2150.0        
+Teams Machine-Wide Installer                  Microsoft.Teams                               1.5.0.30767        winget
+Pandoc 3.1                                    JohnMacFarlane.Pandoc                         3.1                winget
+Microsoft Update Health Tools                 {89581302-705F-42C5-99B0-E368A845DAD5}        3.70.0.0           
+VMware Player                                 VMware.WorkstationPlayer                      17.0.1             winget
+gsudo v2.0.4                                  gerardog.gsudo                                2.0.4              winget
+NVIDIA Graphics Driver 516.94                 {B2FE1952-0186-46C3-BAEC-A80AA35AC5B8}_Displ… 516.94             
+Epic Games Launcher                           EpicGames.EpicGamesLauncher                   1.3.67.0           winget
+Python Launcher                               {C28EE783-FA9C-4E09-910E-181A4A28C29C}        3.11.2150.0        
+Intel(R) Computing Improvement Program        {C5A3E7E0-34F2-4582-A7FF-F335C8ED582B}        2.4.09007          
+CherryTree version 0.99.53.0                  Giuspen.Cherrytree                            0.99.53.0          winget
+Microsoft Visual Studio Code                  Microsoft.VisualStudioCode                    1.76.0             winget
+Microsoft Visual C++ 2010  x86 Redistributab… Microsoft.VCRedist.2010.x86                   10.0.40219         winget
+Intel® Driver & Support Assistant             Intel.IntelDriverAndSupportAssistant          23.1.9.7           winget
+Microsoft Visual C++ 2015-2022 Redistributab… Microsoft.VCRedist.2015+.x86                  14.32.31332.0      winget
+Git Credential Manager 2.0.785.29792          Microsoft.GitCredentialManagerCore            2.0.785            winget
