@@ -1,0 +1,13 @@
+C:\Program Files\WindowsApps NT SERVICE\TrustedInstaller:(F)
+                             NT SERVICE\TrustedInstaller:(OI)(CI)(IO)(F)
+                             S-1-15-3-1024-3635283841-2530182609-996808640-1887759898-3848208603-3313616867-983405619-2501854204:(RX)
+                             S-1-15-3-1024-3635283841-2530182609-996808640-1887759898-3848208603-3313616867-983405619-2501854204:(OI)(CI)(IO)(GR,GE)
+                             NT AUTHORITY\SYSTEM:(F)
+                             NT AUTHORITY\SYSTEM:(OI)(CI)(IO)(F)
+                             BUILTIN\Administrators:(CI)(RX)
+                             NT AUTHORITY\LOCAL SERVICE:(OI)(CI)(RX)
+                             NT AUTHORITY\NETWORK SERVICE:(OI)(CI)(RX)
+                             NT AUTHORITY\RESTRICTED:(OI)(CI)(RX)
+                             BUILTIN\Users:(Rc,S,RD,REA,X,RA)
+
+Successfully processed 1 files; Failed processing 0 files
