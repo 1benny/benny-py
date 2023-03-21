@@ -7,7 +7,7 @@ man.add_argument("m", type=str, default=False, help="Name of the program")
 args = man.parse_args()
 
 
-mans = "C:/Users/Ben/Man/"
+mans = "C:/Users/Ben/manpages/man-pages/"
 search = f"{mans}{args.m}.txt"
 
         
@@ -17,6 +17,8 @@ if os.path.exists(search.replace("/", "\\")) == True:
             content = f.read()
             print(content)
             f.close
+    except FileNotFoundError:
+        print("There's a problem with the directory of man-pages' program files.")
     except UnicodeDecodeError:
         print('Having trouble with this one...')
         time.sleep(2)
@@ -27,6 +29,6 @@ if os.path.exists(search.replace("/", "\\")) == True:
         print('Try again later...')
 else:
     print(f"Couldn't find man page for '{args.m}'")
-    with open("C:\\Users\\Ben\\Desktop\\shit\\Python\\missing-manpages.txt", "a") as f:
+    with open("C:\\Users\\Ben\\manpages\\missing.txt", "a") as f:
         f.write(f"{args.m}.txt\n")
         f.close()
