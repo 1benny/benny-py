@@ -1,6 +1,7 @@
 import argparse
 import time
 import subprocess as sub
+import colour_print 
 
 def descript(page):
     with open(page, "r", encoding="utf-8") as f:
@@ -20,12 +21,11 @@ cli = argparse.ArgumentParser(prog="whatis for windows", description="general wh
 cli.add_argument("a", type=str, help="Required positional argument for query")
 args = cli.parse_args()
 
-database = "C:/Users/Ben/Man/"
-search = ((f"{database}{args.a}.txt").replace("/", "\\"))
-missing_dir = "C:\\Users\\Ben\\Man\\scripts\\missing.txt"
+database = f"C:\\Users\\Ben\\manpages\\man-pages\\{args.a}.txt"
+missing_dir = "C:\\Users\\Ben\\manpages\\missing.txt"
 
 try:
-    descript(page=search)
+    descript(page=database)
 except FileNotFoundError:
     try:
         time.sleep(2)
@@ -35,7 +35,7 @@ except FileNotFoundError:
         if missing == "y" or missing == "Y":
             missing_page(page=missing_dir)
         elif missing == "n" or missing == "N":
-            print("\nNo worries.")
+            print(colour_print.printc("\nNo worries.", "red"))
         elif KeyboardInterrupt:
             print(f"\nWhatever fuckwit")
     except KeyboardInterrupt:
