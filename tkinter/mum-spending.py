@@ -59,16 +59,17 @@ class App(ttkk.CTk):
         self.top_left_frame.pack(padx=(10, 0), pady=7, side="left", anchor="n", expand=True, fill="x")
         #]        
         self.top_right_frame = ttkk.CTkFrame(master=self.top_bg_frame, 
-                                             fg_color="#3d3d3d", 
+                                             fg_color="#1a1a1a", 
                                              height=40,
                                              width=170)
         self.top_right_frame.pack(pady=7, padx=(10, 10), side="right", anchor=("ne"), expand=False)
 
         self.top_right_entry = ttkk.CTkEntry(self.top_right_frame,
                                              fg_color="#3d3d3d",
-                                             font=("Montserrat Medium", 16),
+                                             border_width=0,
+                                             font=("Montserrat Medium", 14),
                                              height=40,
-                                             placeholder_text="      . .  /  . .  /  . .")
+                                             placeholder_text="       . .  /  . .  /  . .")
         self.top_right_entry.pack(padx=(0, 0))
 #       
 #        
@@ -206,15 +207,8 @@ class App(ttkk.CTk):
 #~~~~~
         self.middle_bg_frame = ttkk.CTkFrame(self.bottom_bg_frame,
                                              fg_color="#3d3d3d", 
-                                             height=40,
-                                             width=900)
-        self.middle_bg_frame.pack(padx=10, pady=2, anchor="nw")
-
-        self.middle_right_frame = ttkk.CTkFrame(self.bottom_bg_frame,
-                                                fg_color="#3d3d3d",
-                                                height=40)
-        self.middle_right_frame.pack(padx=(0,10), side="top")
-
+                                             height=40)
+        self.middle_bg_frame.pack(padx=10, pady=2, anchor="nw", fill="x")
 #~~~~~
 #~~~~~
         self.bottom_second_frame = ttkk.CTkFrame(self.bottom_bg_frame, 
