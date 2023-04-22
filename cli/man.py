@@ -1,9 +1,22 @@
+import platform
 import os
 import argparse
 import time
 from colorama import just_fix_windows_console
 
 just_fix_windows_console()
+local_os = platform.system()
+
+match local_os:
+    case "Windows":
+        usr = os.getenv("USERPROFILE")
+    case "Darwin":
+        usr = os.getenv("HOME")
+    case _:
+        pass
+
+missing = (f"{usr}\\manpages\\missing.txt")
+page_path = (f"{usr}\\manpages\\man-pages\\")
 
 def colour(text, etype):
     if etype == "red":
@@ -21,10 +34,7 @@ man = argparse.ArgumentParser(description="Read manual pages for a specified pro
 man.add_argument("m", type=str, default=False, help="Name of the program")
 args = man.parse_args()
 
-
-mans = "C:/Users/Ben/manpages/man-pages/"
-missing = "C:\\Users\\Ben\\manpages\\missing.txt"
-search = f"{mans}{args.m}.txt"
+search = f"{page_path}{args.m}.txt"
 
 red_error = colour("Error:", "red")
 yes_or_no = colour("[y/n]", "blue")
