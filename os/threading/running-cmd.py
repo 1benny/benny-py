@@ -19,15 +19,12 @@ def startlist():
     sleep(3)
     return
 
-
-
 def search():
     a = entry1.get()
     print(sub.getoutput(f"winget search {a}")) ## 2) <~~ After being called as target by "startsearch", line runs, which in this case gets output of "winget search"
     sleep(4)                                   ## 3) <~~ when "sleep" is called, Python switches its focus back to main thread. This can be done in opposite to return focus back to new thread again.
     print(f"\n\nFinished")
     
-
 def startsearch():
     y = threading.Thread(target=search) ## I) <~~ Creates a new Thread with the new Thread's starting action being the target function"search"  
     y.start()                           ## 1) <~~ Starts the Thread, using the specified target function as its action.
@@ -35,13 +32,11 @@ def startsearch():
     print(threading.active_count)
     sleep(0.5)
 
-
 def install():
     return
 
 def startinstall():
     return
-
 
 root = tk.Tk()
 root.geometry("400x400")

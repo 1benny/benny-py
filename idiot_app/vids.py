@@ -1,7 +1,6 @@
 import cv2
 import numpy as np
-import playsound
-import threading
+from playsound import playsound
 from ffpyplayer.player import MediaPlayer
 from time import sleep
 
@@ -16,6 +15,7 @@ cap = cv2.VideoCapture("idiot.mp4")
 if (cap.isOpened()== False):
     print("Error opening video file")
 
+playsound("C:\\Users\\Ben\\Projects\\bdives-py\\idiot_app\\idiot.wav")
 
 while(cap.isOpened()):
     ret, frame = cap.read()
@@ -29,3 +29,4 @@ while(cap.isOpened()):
 cap.release()
 
 cv2.destroyAllWindows()
+
