@@ -1,7 +1,6 @@
 import argparse
 import time
 import subprocess as sub
-import colour_print 
 
 def descript(page):
     with open(page, "r", encoding="utf-8") as f:

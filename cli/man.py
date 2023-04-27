@@ -29,64 +29,86 @@ def colour(text, etype):
         out = ('\x1b[1;33;40m' + f'{text}' + '\x1b[0m')
     return out
 
-
-man = argparse.ArgumentParser(description="Read manual pages for a specified program")
-man.add_argument("m", type=str, default=False, help="Name of the program")
-args = man.parse_args()
-
-search = f"{page_path}{args.m}.txt"
-
 red_error = colour("Error:", "red")
 yes_or_no = colour("[y/n]", "blue")
 
-if os.path.exists(search.replace("/", "\\")) == True:
-    try:
-        with open(search.replace("/", "\\"), "r", encoding="utf-8") as f:
-            content = f.read()
-            print(content)
-            f.close
-    except FileNotFoundError:
-        except1 = colour("FileNotFoundError", "green")
-        print(f"{red_error} There's a problem with the directory of man-pages' program files.")
-        exit(code=1)
-    except UnicodeDecodeError:
-        except2 = colour("UnicodeDecodeError", "green")
-        print(f'Program threw a {except2}. Exiting with 1')
-        exit(code=1)
-    except UnicodeError:
-        except3 = colour("UnicodeError", "green")
-        print(f'Program threw a {except3}. Exiting with 1')
-        exit(code=1)
+man = argparse.ArgumentParser(prog="Man-pages", 
+                              usage="""man [PROGRAM]
+Prints a program's man-pages to stdout""",
+                              description=f"""
+If the program's man-page is missing or is not readable, you will be prompted to either add the 
+name of the missing page to missing.txt, or disregard and exit""")
 
-else:
-    print(colour(f"Couldn't find man page for '{args.m}'...", "red"))
-    time.sleep(1)
-    
-    try: 
-        add_missing = input(f"Add entry to missing pages? {yes_or_no}: ")
-        if add_missing == "y" or add_missing == "Y":
-            with open(missing, "a") as f:
-                f.write(f"\n{args.m}.txt")
-                f.close()
-            print("...")
-            with open(missing, "r") as f:
-                latest = f.readlines()[-1]
-                if (f"{args.m}.txt") in latest:
-                    print(colour(f"Successfully added '{args.m}' to missing pages list.", "green") + "\n...")
-                    time.sleep(2)
-                else:
-                    print(f"{red_error} Something went wrong. Entry not added to list.")   
-                f.close()
+man.add_argument(f"x", 
+                 metavar="[PROGRAM]",
+                 nargs="?",
+                 help="Name of the program")
+man.add_argument("-p",
+                 "--path",
+                 action="store_true",
+                 default=False,
+                 help="Print the path in which the man-pages are locally stored and exit.")
+man.add_argument("--build-script")
 
-        elif add_missing == "n" or add_missing == "N":
-            print(f"No worries.")
-            print(colour("Goodbye", "red"))
-        
-        else:
-            print(colour("Input not recognised as answer. Exiting.", "red"))
-        
-    except FileNotFoundError:
-        error = colour("FileNotFoundError", "green")
-        print(f"The program threw a {error} error. Exiting with 1.\n")
-    except KeyboardInterrupt:
-        print(colour("\nGoodbye.", "red"))
+args = man.parse_args()
+args.PROGRAM = args.x
+
+if args.path:
+    print(page_path)
+    pass
+
+search = f"{page_path}{args.x}.txt"
+
+if args.x:
+    if os.path.exists(search.replace("/", "\\")) == True:
+        try:
+            with open(search.replace("/", "\\"), "r", encoding="utf-8") as f:
+                content = f.read()
+                print(content)
+                f.close
+        except FileNotFoundError:
+            except1 = colour("FileNotFoundError", "green")
+            print(f"{red_error} There's a problem with the directory of man-pages' program files.")
+            exit(code=1)
+        except UnicodeDecodeError:
+            except2 = colour("UnicodeDecodeError", "green")
+            print(f'Program threw a {except2}. Exiting with 1')
+            exit(code=1)
+        except UnicodeError:
+            except3 = colour("UnicodeError", "green")
+            print(f'Program threw a {except3}. Exiting with 1')
+            exit(code=1)
+    elif not args.x:
+        print("Hello world")
+    else:
+        print(colour(f"Couldn't find man page for '{args.x}'...", "red"))
+        time.sleep(1)
+
+        try:
+            add_missing = input(f"Add entry to missing pages? {yes_or_no}: ")
+            if add_missing == "y" or add_missing == "Y":
+                with open(missing, "a") as f:
+                    f.write(f"\n{args.x}.txt")
+                    f.close()
+                print("...")
+                with open(missing, "r") as f:
+                    latest = f.readlines()[-1]
+                    if (f"{args.x}.txt") in latest:
+                        print(colour(f"Successfully added '{args.x}' to missing pages list.", "green") + "\n...")
+                        time.sleep(2)
+                    else:
+                        print(f"{red_error} Something went wrong. Entry not added to list.")
+                    f.close()
+
+            elif add_missing == "n" or add_missing == "N":
+                print(f"No worries.")
+                print(colour("Goodbye", "red"))
+
+            else:
+                print(colour("Input not recognised as answer. Exiting.", "red"))
+
+        except FileNotFoundError:
+            error = colour("FileNotFoundError", "green")
+            print(f"The program threw a {error} error. Exiting with 1.\n")
+        except KeyboardInterrupt:
+            print(colour("\nGoodbye.", "red"))

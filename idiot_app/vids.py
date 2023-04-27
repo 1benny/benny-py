@@ -1,32 +1,34 @@
 import cv2
-import numpy as np
-from playsound import playsound
-from ffpyplayer.player import MediaPlayer
+import numpy
+import playsound
 from time import sleep
+import multiprocessing
 
+def playaudio():
+    playsound.playsound("idiot.wav")
 
-def idiot(path):
-    vid = cv2.VideoCapture("idiot.mp4")
-    player = MediaPlayer
-    
+def playvid():
+    cap = cv2.VideoCapture('idiot.mp4')
 
-cap = cv2.VideoCapture("idiot.mp4")
+    if (cap.isOpened()== False):
+        print("Error opening video file")
 
-if (cap.isOpened()== False):
-    print("Error opening video file")
+    while(cap.isOpened()):
+        ret, frame = cap.read()
+        if ret == True:
+            cv2.imshow('Frame', frame)
+            if cv2.waitKey(25) & 0xFF == ord('q'):
+                audio_thread.kill()
+                break
 
-playsound("C:\\Users\\Ben\\Projects\\bdives-py\\idiot_app\\idiot.wav")
+            elif cv2.getWindowProperty('Frame', cv2.WND_PROP_VISIBLE) < 1:
+                playsound.playsound("fart.wav")
+    cap.release()
+    cv2.destroyAllWindows()
 
-while(cap.isOpened()):
-    ret, frame = cap.read()
-    if ret == True:
-        cv2.imshow('Frame', frame)
-        if cv2.waitKey(25) & 0xFF == ord('q'):
-            break
-    else:
-        break
-    
-cap.release()
+audio_thread = multiprocessing.Process(target=playaudio)
+video_thread = multiprocessing.Process(target=playvid)
 
-cv2.destroyAllWindows()
-
+if __name__ == "__main__":
+    audio_thread.start()
+    video_thread.start()

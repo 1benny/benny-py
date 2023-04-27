@@ -28,33 +28,38 @@ def search():
 
 def download_vid():
     global vid_dl
-    dl_label.after(5000) 
-    url = entry1.get()
-    vid_dl = YouTube(url)
-    do_download = vid_dl.streams.get_highest_resolution()
-    vid_title = vid_dl.title
-    format_path = os.path.join(set_path, vid_title).replace("\\", "/")
+    vid_dl = YouTube(entry1.get())
+    print(set_path)
+    print(vid_dl.title)
+#    url = entry1.get()
+
+    print("AFTER FORMATTING: \n")
+
+    sleep(2)
+    format_path = os.path.join(set_path, vid_dl.title).replace("\\", "/")
+    print(format_path)
     ext_path = (str(format_path) + r".mp4")
-    #do_download.download(set_path)
-
-    try: 
-        do_download.download(set_path)
-    except NameError: dl_label.configure(text="Error: No directory selected")
-    else:
-        do_download.download(set_path)
-        
+    print(ext_path)
     
-    if os.path.exists(ext_path):
-        dl_label.configure(text="Success")
-    else:
-        dl_label.configure(text="Download failed")
 
-    if var2.get() == 1:
-        open_finish()
-    elif var1.get() == 1:
-        mp3()
-    else:
-        pass        
+#    try: 
+#        do_download.download(set_path)
+#    except NameError: dl_label.configure(text="Error: No directory selected")
+#    else:
+#        do_download.download(set_path)
+#        
+#    
+#    if os.path.exists(ext_path):
+#        dl_label.configure(text="Success")
+#    else:
+#        dl_label.configure(text="Download failed")
+#
+#    if var2.get() == 1:
+#        open_finish()
+#    elif var1.get() == 1:
+#        mp3()
+#    else:
+#        pass        
     return 
 
 
