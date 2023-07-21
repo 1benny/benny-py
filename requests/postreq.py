@@ -2,8 +2,8 @@ from requests import *
 import requests as req
 
 resp = req.post('https://textbelt.com/text', {
-    "phone": "+61414939515",
+    "phone": "+1919191919",
     "message": "hey little freakalope",
-    "key": "textbelt",
+    "key": "GGGGGGGGGG",
 })
 print(resp.json())
