@@ -47,7 +47,6 @@ def send():
         write_key()
     else:
         pass
-    f.close()
     return
 
 def check_key():

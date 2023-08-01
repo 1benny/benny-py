@@ -1,0 +1,112 @@
+import time
+import requests
+from requests.auth import HTTPDigestAuth
+import headers
+import argparse
+import sys, io
+import subprocess as sub
+#
+CURSOR_UP = "\033[1A"      # For deleting excess text in output
+ERASE = "\x1b[2k"
+#
+#
+auth = HTTPDigestAuth("rokudev", "admin")   # Auth to login to interface
+
+## Creating the parser for CLI args
+parser = argparse.ArgumentParser(usage="""roku [FILENAME] [OPTIONS...]""", description="CLI for quickly managing packages on Roku TV device")
+parser.add_argument('operation', nargs="?")
+parser.add_argument('filename')
+parser.add_argument('-H', metavar="--host", required=False, action="store", help="Specifies the host address. When omitted, the default address with be used.")
+args = parser.parse_args()
+
+## Testing for hostname in CLI args
+if not args.H:
+    host = "http://192.168.0.91/plugin_install"
+else:
+    host = f"http://{args.H}/plugin_install"
+
+## Defining what to search for in case of spelling mistakes given as args
+install_string = "ins"
+delete_string = "del"
+
+## Redirecting stdout to a buffer to check for spelling mistakes  
+out_buf = io.StringIO()
+sys.stdout = out_buf
+
+print(args.operation)
+printed_output = out_buf.getvalue()
+sys.stdout = sys.__stdout__
+
+
+if "install" not in printed_output and "ins" in printed_output:
+    print(f"Unrecognised command '{args.operation}'")
+    print(f"Did you mean 'install'?")
+    exit(0)
+elif "delete" not in printed_output and "del" in printed_output:
+    print(f"Unrecognised command '{args.operation}'")
+    print(f"Did you mean 'Delete'?")    
+    exit(0)
+elif delete_string not in printed_output and install_string not in printed_output: 
+    print(f"Unrecognised command '{args.operation}'")
+    exit(1)
+
+if args.operation == "install":
+    try:
+        f = open(args.filename, 'rb')
+    except FileNotFoundError:
+        print("File does not exist.\nCheck filename and try again.")
+    except IsADirectoryError:
+        print("The filename cannot be a directory.")
+    else:
+        bin_data = f.read()
+        f.close()
+    finally:
+        payload = {
+            'archive': (f'{args.filename}', bin_data, "application/x-zip-compressed"),
+            'mysubmit': 'Install'
+        }
+
+elif args.operation == "delete":
+    payload = {
+        'archive': ('', 'application/otet-stream'),
+        'mysubmit': 'Delete'
+    }
+
+print("Method: " + args.operation)
+print("File: " + args.filename)
+print("Host: " + host)
+
+response = requests.post(url=host,
+                         auth=auth,
+                         headers=headers.headers,
+                         files=payload)
+
+
+delete_success = "Success"
+delete_failure = "Delete Failed: No such file or directory"
+install_success = "Install Success"
+
+# response_buffer = io.StringIO()
+# sys.stdout = response_buffer
+
+print(response)
+
+# resp_output = response_buffer.getvalue()
+# sys.stdout = sys.__stdout__
+
+# print(resp_output)
+# if delete_success in resp_output:
+#     print(delete_success)
+
+# elif delete_failure in resp_output:
+#     print(delete_failure)
+
+time.sleep(3)
+
+followup = requests.get(url="http://192.168.0.91/plugin_install", 
+                        auth=auth, 
+                        headers=headers.headers,
+                        allow_redirects=False)
+
+print(followup.history)
+print(followup.text)

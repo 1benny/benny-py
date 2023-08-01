@@ -17,7 +17,7 @@ def missing_page(page):
     return
 
 cli = argparse.ArgumentParser(prog="whatis for windows", description="general what is that program")
-cli.add_argument("a", type=str, help="Required positional argument for query")
+cli.add_argument("a", metavar="[PROGRAM]" type=str, help="Required positional argument for query")
 args = cli.parse_args()
 
 database = f"C:\\Users\\Ben\\manpages\\man-pages\\{args.a}.txt"
