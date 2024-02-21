@@ -9,7 +9,9 @@ import time
 import os
 
 def downloadVid(url, path, audio):
-    video = YouTube(url)
+    video = YouTube(url, 
+                    use_oauth=True, 
+                    allow_oauth_cache=True)
     if audio:
         print("Downloading as mp3...")
         time.sleep(2)

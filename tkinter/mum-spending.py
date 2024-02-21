@@ -54,7 +54,7 @@ class App(ttkk.CTk):
         self.top_bg_frame.pack(expand=0, fill="both")
         #]
         self.top_left_frame = ttkk.CTkFrame(master=self.top_bg_frame,             # Top background frame
-                                   fg_color="#3D3D3D",
+                                   fg_color="#FFFFFF",
                                    height=40)
         self.top_left_frame.pack(padx=(10, 0), pady=7, side="left", anchor="n", expand=True, fill="x")
         #]        
@@ -74,7 +74,7 @@ class App(ttkk.CTk):
 #       
 #        
         self.bottom_bg_frame = ttkk.CTkFrame(master=self,
-                                   fg_color="#212121",
+                                   fg_color="#FFFFFF",
                                    corner_radius=0)
         self.bottom_bg_frame.pack(fill="both", expand=True)
 

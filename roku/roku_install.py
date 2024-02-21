@@ -6,6 +6,15 @@ import argparse
 import sys, io
 import subprocess as sub
 #
+def findResult(fname, operation):
+    with open(fname, "r") as f:
+        lines = f.readlines()
+        for line in lines:
+            if line.find(operation) != -1:
+                print(operation)
+#
+#
+#
 CURSOR_UP = "\033[1A"      # For deleting excess text in output
 ERASE = "\x1b[2k"
 #
@@ -81,32 +90,20 @@ response = requests.post(url=host,
                          headers=headers.headers,
                          files=payload)
 
+fname = "tmp.txt"
 
-delete_success = "Success"
-delete_failure = "Delete Failed: No such file or directory"
-install_success = "Install Success"
+with open(fname, "w") as f:
+    f.write(response.text)
+    f.close()
 
-# response_buffer = io.StringIO()
-# sys.stdout = response_buffer
+print("...")
+time.sleep(2)
+print(response.text)
 
-print(response)
+if args.operation == 'delete':
+    operation = "Delete Failed: No such file or directory"
+elif args.operation == 'install':
+    
+    operation = ""
 
-# resp_output = response_buffer.getvalue()
-# sys.stdout = sys.__stdout__
-
-# print(resp_output)
-# if delete_success in resp_output:
-#     print(delete_success)
-
-# elif delete_failure in resp_output:
-#     print(delete_failure)
-
-time.sleep(3)
-
-followup = requests.get(url="http://192.168.0.91/plugin_install", 
-                        auth=auth, 
-                        headers=headers.headers,
-                        allow_redirects=False)
-
-print(followup.history)
-print(followup.text)
+#findResult(fname=fname, operation=fnotfound)

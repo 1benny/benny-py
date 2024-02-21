@@ -24,26 +24,26 @@ class Links(ttkk.CTk):
 
         self.title_label = ttkk.CTkLabel(self.frame, 
                                          text="Pinned/Important Links", 
-                                         text_font=("Consolas", 12))
+                                         font=("Consolas", 12))
         self.title_label.pack()
 
         self.entry1 = ttkk.CTkEntry(self.frame2, 
                                     width=410,
                                     height=0,
-                                    text_font=("Montserrat Medium", 8))
+                                    font=("Montserrat Medium", 8))
         self.entry1.place(x= 10, y=10)
 
         self.button1 = ttkk.CTkButton(self.frame2, 
                                       width=410,
                                       height=0, 
-                                      text_font=("Montserrat", 10), 
+                                      font=("Montserrat", 10), 
                                       text="Show context")
         self.button1.place(x=10, y=35)
 
         self.button2 = ttkk.CTkButton(self.frame2,
                                       width=410, 
                                       height=0,
-                                      text_font=("Montserrat", 10),
+                                      font=("Montserrat", 10),
                                       text="Add link")
         self.button2.place(x=10, y=65)
 
