@@ -53,7 +53,7 @@ def check_key():
     if var1.get() == 1:
         write_key()
         sleep(2)
-        existance = (os.getcwd() + "\sms_key.txt")
+        existance = (os.getcwd() + r"\sms_key.txt")
         if os.path.exists(existance) == True:
             tk.Label.configure(result_label, text="Saved new Key to:")
             tk.Label.configure(result2_label, text=os.getcwd())

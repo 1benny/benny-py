@@ -1,4 +1,4 @@
-#from PyQt6.QtWidgets import QApplication, QWidget, QToolBar, QCheckBox
+from PyQt6.QtWidgets import QApplication, QWidget, QToolBar, QCheckBox
 from PyQt6.QtWidgets import *
 import sys
 
@@ -14,8 +14,8 @@ class MainWindow(QMainWindow):
         self.button1.setCheckable(True)
         self.button1.clicked.connect(self.b1_clicked)
         self.setCentralWidget(self.button1)
-        self.set
-
+        #self.set
+        self.setMenuBar(None)
 
     def b1_clicked(self):
         print("Clicked button 1")

@@ -5,21 +5,20 @@ import headers
 import argparse
 import sys, io
 import subprocess as sub
-#
+
 def findResult(fname, operation):
     with open(fname, "r") as f:
         lines = f.readlines()
         for line in lines:
             if line.find(operation) != -1:
                 print(operation)
-#
-#
-#
+
+
 CURSOR_UP = "\033[1A"      # For deleting excess text in output
 ERASE = "\x1b[2k"
-#
-#
-auth = HTTPDigestAuth("rokudev", "admin")   # Auth to login to interface
+
+# Auth to login to interface
+auth = HTTPDigestAuth("rokudev", "admin")   
 
 ## Creating the parser for CLI args
 parser = argparse.ArgumentParser(usage="""roku [FILENAME] [OPTIONS...]""", description="CLI for quickly managing packages on Roku TV device")

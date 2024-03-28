@@ -21,7 +21,7 @@ class Stopwatch(ttkk.CTk):
         assets = (f"{os.getenv('programdata')}\\Stopwatch\\")
         icon = f"{assets}stopwatch_icon.ico"
 
-        self.iconbitmap(icon)
+#        self.iconbitmap(icon)
         self.title("Stopwatch")
         self.geometry("250x100")
         #self.resizable(False, False)
