@@ -4,7 +4,7 @@
 # yt.py
 #
 import argparse
-from pytube import YouTube, exceptions
+from pytubefix import YouTube, exceptions
 import time
 import os
 
