@@ -1,29 +1,33 @@
-import argparse
-import glob
+import argparse as ap
 import os
+import sys
 
 
-sys = "C:\\**\\*"
-home = "C:\\Users\\Ben\\**\\*"
+SYSTEM_DIR = "C:\\"
+USER_DIR = os.path.expanduser("~")
 
-def search(root_folder):
-    for file in glob.iglob(root_folder, include_hidden=True, recursive=True):
-        if args.a in file:
-            print(file)
-            break
-    
+def search(root_folder, targetName):
+    for root, dirs, files in os.walk(root_folder, topdown=True, onerror=None):
+        for file in files:
+            if targetName.lower() in file.lower():
+                print(os.path.join(root, file))
 
-cli = argparse.ArgumentParser(description="whereis program for recusively searching directories")
-cli.add_argument("a", type=str, default=True, help="Required positional arg for filename/directory to search for")
-cli.add_argument("-x", metavar="--system", action="store_const", const=True, default=False, help="Search entire system")
-args = cli.parse_args()
 
+
+program = ap.ArgumentParser(usage="""whereis [OPTION]... FILE""", description="Recursively search for files or directories")
+program.add_argument("name", metavar="FILE", type=str, help="Name of file to search for")
+program.add_argument("-d", "--drive", action="store_true", help="Used for searching thru entire drive")
+
+
+if len(sys.argv) == 1:
+    program.print_usage()
+    sys.exit(0)
+args = program.parse_args()
 try:
-    if args.x:
-        search(root_folder=sys)
-    else:
-        search(root_folder=home)
+    if args.drive:
+        search(SYSTEM_DIR, args.name)
+    elif args.name:
+        search(USER_DIR, args.name)
 
 except KeyboardInterrupt:
-    print("Detected keyboard interrupt. Exiting")
-    
+    print("\nOperation cancelled by user.")

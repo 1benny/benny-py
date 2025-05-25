@@ -1,22 +1,26 @@
 import platform
+import sys
 import os
 import argparse
 import time
 from colorama import just_fix_windows_console
 
+
+ROOT_DIR = f"{os.environ['userprofile']}\\manpages\\"
+MISSING_DIR = os.path.join(ROOT_DIR, "missing.txt")
+MANPAGES_DIR = os.path.join(ROOT_DIR, "man-pages")
+
+
 just_fix_windows_console()
-local_os = platform.system()
+#local_os = platform.system()
 
-match local_os:
-    case "Windows":
-        usr = os.getenv("USERPROFILE")
-    case "Darwin":
-        usr = os.getenv("HOME")
-    case _:
-        pass
-
-missing = (f"{usr}\\manpages\\missing.txt")
-page_path = (f"{usr}\\manpages\\man-pages\\")
+#match local_os:
+#    case "Windows":
+#        usr = os.getenv("USERPROFILE")
+#    case "Darwin":
+#        usr = os.getenv("HOME")
+#    case _:
+#        pass
 
 def colour(text, etype):
     if etype == "red":
@@ -32,8 +36,7 @@ def colour(text, etype):
 red_error = colour("Error:", "red")
 yes_or_no = colour("[y/n]", "blue")
 
-man = argparse.ArgumentParser(prog="Man-pages", 
-                              usage="""man [PROGRAM]
+man = argparse.ArgumentParser(usage="""man [PROGRAM]
 Prints a program's man-pages to stdout""",
                               description=f"""
 If the program's man-page is missing or is not readable, you will be prompted to either add the 
@@ -48,18 +51,17 @@ man.add_argument("-p",
                  action="store_true",
                  default=False,
                  help="Print the path in which the man-pages are locally stored and exit.")
-man.add_argument("--build-script")
 
 args = man.parse_args()
-args.PROGRAM = args.x
+#args.PROGRAM = args.x
+
+search = f"{MANPAGES_DIR}\\{args.x}.txt"
 
 if args.path:
-    print(page_path)
-    pass
+    print(MANPAGES_DIR)
+    sys.exit(0)
 
-search = f"{page_path}{args.x}.txt"
-
-if args.x:
+elif args.x:
     if os.path.exists(search.replace("/", "\\")) == True:
         try:
             with open(search.replace("/", "\\"), "r", encoding="utf-8") as f:
@@ -87,11 +89,11 @@ if args.x:
         try:
             add_missing = input(f"Add entry to missing pages? {yes_or_no}: ")
             if add_missing == "y" or add_missing == "Y":
-                with open(missing, "a") as f:
+                with open(MISSING_DIR, "a") as f:
                     f.write(f"\n{args.x}.txt")
                     f.close()
                 print("...")
-                with open(missing, "r") as f:
+                with open(MISSING_DIR, "r") as f:
                     latest = f.readlines()[-1]
                     if (f"{args.x}.txt") in latest:
                         print(colour(f"Successfully added '{args.x}' to missing pages list.", "green") + "\n...")
@@ -101,8 +103,7 @@ if args.x:
                     f.close()
 
             elif add_missing == "n" or add_missing == "N":
-                print(f"No worries.")
-                print(colour("Goodbye", "red"))
+                print(colour("All good", "red"))
 
             else:
                 print(colour("Input not recognised as answer. Exiting.", "red"))
@@ -111,4 +112,4 @@ if args.x:
             error = colour("FileNotFoundError", "green")
             print(f"The program threw a {error} error. Exiting with 1.\n")
         except KeyboardInterrupt:
-            print(colour("\nGoodbye.", "red"))
+            print(colour("\nExiting.", "red"))
