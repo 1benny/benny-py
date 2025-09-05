@@ -4,7 +4,7 @@ from tkinter import *
 import requests
 from time import sleep
 import os
-from pytube import YouTube
+from pytubefix import YouTube
 
 #localfiles
 ico = "C:\\Program Files\\bitmap.ico"
