@@ -8,7 +8,7 @@ from math import *
 root = tk.Tk()
 root.title("Colour Select")
 root.geometry("300x230")
-root.iconbitmap('C:\\Users\\Ben\\Documents\\Icons\\cpicker.ico')
+#root.iconbitmap('C:\\Users\\Ben\\Documents\\Icons\\cpicker.ico')
 #root.resizable(False, False)
 
 
@@ -40,8 +40,8 @@ label.pack()
 label2 = tk.Label(root, text="↓")
 label2.pack()
 
-pic1 = PhotoImage(file="C:\\Users\\Ben\\Documents\\Icons\\smallsize.png")
-pic2 = PhotoImage(file="C:\\Users\\Ben\\Documents\\Icons\\smallsize.png")
+#pic1 = PhotoImage(file="C:\\Users\\Ben\\Documents\\Icons\\smallsize.png")
+#pic2 = PhotoImage(file="C:\\Users\\Ben\\Documents\\Icons\\smallsize.png")
 
 button1 = tk.Button(root, padx=130, pady=20, command=change_colour)      
 button1.pack(expand=False)
