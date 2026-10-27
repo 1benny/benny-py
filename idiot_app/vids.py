@@ -1,6 +1,6 @@
 import cv2
 import numpy
-import playsound
+import playsound3 as playsound
 from time import sleep
 import multiprocessing
 
